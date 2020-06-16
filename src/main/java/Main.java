@@ -1,26 +1,17 @@
-import lib.*;
+import org.matheclipse.core.eval.ExprEvaluator;
+import org.matheclipse.core.interfaces.IExpr;
 
-import java.util.Arrays;
-import java.util.List;
-
-/**
- * See: https://ruslanspivak.com/lsbasi-part7/
- */
 public class Main {
+    /**
+     * This class does not utilize the interpreter, instead take a look at the tests.
+     */
     public static void main(String[] args) {
-        List<String> expressions = Arrays.asList(
-            "7 + 3 * (10 / (12 / (3 + 1) - 1))", // 22
-            "7 + 3 * (10 / (12 / (3 + 1) - 1)) / (2 + 3) - 5 - 3 + (8)", // 10
-            "7 + (((3 + 2)))" // 12
-        );
+        ExprEvaluator util = new ExprEvaluator();
 
-        expressions.forEach(expr -> System.out.println(evaluateExpression(expr)));
-    }
+        // 3x + 12 = 46
+        IExpr result = util.eval("Solve(3x + 12 == 46, x)");
 
-    public static int evaluateExpression(String expression) {
-        Lexer lexer = new Lexer(expression);
-        Parser parser = new Parser(lexer);
-        Interpreter interpreter = new Interpreter(parser);
-        return interpreter.interpret();
+        // print: {{x->34/3}}
+        System.out.println(result);
     }
 }
