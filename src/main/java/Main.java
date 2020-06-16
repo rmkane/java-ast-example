@@ -14,7 +14,7 @@ public class Main {
             "7 + (((3 + 2)))" // 12
         );
 
-        expressions.stream().forEach(expr -> System.out.println(evaluateExpression(expr)));
+        expressions.forEach(expr -> System.out.println(evaluateExpression(expr)));
     }
 
     public static int evaluateExpression(String expression) {
